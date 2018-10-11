@@ -65,8 +65,7 @@ call pathogen#infect()                      " use pathogen
 augroup configgroup
   autocmd!
   autocmd VimEnter * highlight clear SignColumn
-  autocmd BufWritePre *.php,*.py,*.js,*.txt,*.hs,*.java,*.md
-            \:call <SID>StripTrailingWhitespaces()
+  autocmd BufWritePre * :%s/\s\+$//e
   autocmd FileType python setlocal commentstring=#\ %s
   autocmd FileType python setlocal tabstop=4 softtabstop=4 shiftwidth=4
   autocmd BufEnter Makefile setlocal noexpandtab
@@ -81,17 +80,21 @@ set backupskip=/tmp/*,/private/tmp/*
 set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 set writebackup
 
-" strips trailing whitespace at the end of files. this
-" is called on buffer write in the autogroup above.
-function! <SID>StripTrailingWhitespaces()
-  " save last search & cursor position
-  let _s=@/
-  let l = line(".")
-  let c = col(".")
-  %s/\s\+$//e
-  let @/=_s
-  call cursor(l, c)
-endfunction
 
 set modelines=1
 " vim:foldmethod=marker:foldlevel=0
+
+"set statusline+=%#warningmsg#
+"set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=%*
+
+"let g:syntastic_always_populate_loc_list = 1
+"let g:syntastic_auto_loc_list = 1
+"let g:syntastic_check_on_open = 1
+"let g:syntastic_check_on_wq = 0
+
+let g:syntastic_cpp_compiler_options = ' -std=c++14'
+"let g:syntastic_cpp_include_dirs = [ '/opt/ros/kinetic/include', ]
+"let g:syntastic_cpp_checkers = ['clang_tidy']
+"let g:syntastic_cpp_clang_tidy_exec = "clang-tidy-5.0"
+"let g:syntastic_cpp_clang_tidy_args = "-checks=*,-clang-analyzer-*"
