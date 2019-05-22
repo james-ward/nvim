@@ -1,6 +1,19 @@
 colorscheme badwolf
 
+set nocompatible
+
+filetype plugin on
+set path+=**
+
 syntax enable           " enable syntax processing
+
+" toggle hybrid line numbers
+" turn absolute line numbers on
+set number
+set nu
+" turn relative line numbers on
+set relativenumber
+set rnu
 
 set tabstop=2       " number of visual spaces per TAB
 set softtabstop=2   " number of spaces in tab when editing
@@ -43,6 +56,9 @@ nnoremap k gk
 
 " jk is escape
 inoremap jk <esc>
+
+" use ; instead of :
+:nmap ; :
 
 " highlight last inserted text
 nnoremap gV `[v`]
@@ -95,6 +111,6 @@ set modelines=1
 
 let g:syntastic_cpp_compiler_options = ' -std=c++14'
 "let g:syntastic_cpp_include_dirs = [ '/opt/ros/kinetic/include', ]
-"let g:syntastic_cpp_checkers = ['clang_tidy']
-"let g:syntastic_cpp_clang_tidy_exec = "clang-tidy-5.0"
+let g:syntastic_cpp_checkers = ['clang_tidy']
+"let g:syntastic_cpp_clang_tidy_exec = "clang-tidy"
 "let g:syntastic_cpp_clang_tidy_args = "-checks=*,-clang-analyzer-*"
