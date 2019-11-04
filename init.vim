@@ -114,3 +114,19 @@ let g:syntastic_cpp_compiler_options = ' -std=c++14'
 let g:syntastic_cpp_checkers = ['clang_tidy']
 "let g:syntastic_cpp_clang_tidy_exec = "clang-tidy"
 "let g:syntastic_cpp_clang_tidy_args = "-checks=*,-clang-analyzer-*"
+
+let g:clang_format#detect_style_file = 1
+let g:clang_format#auto_format = 1
+let g:clang_format#auto_format_on_insert_leave = 1
+let g:clang_format#enable_fallback_style = 0
+" map to <Leader>cf in C++ code
+autocmd FileType c,cpp,objc,h,hpp nnoremap <buffer><Leader>cf :<C-u>ClangFormat<CR>
+autocmd FileType c,cpp,objc,h,hpp vnoremap <buffer><Leader>cf :ClangFormat<CR>
+" if you install vim-operator-user
+autocmd FileType c,cpp,objc,h,hpp map <buffer><Leader>x <Plug>(operator-clang-format)
+" Toggle auto formatting:
+nmap <Leader>C :ClangFormatAutoToggle<CR>
+
+" Neomake settings
+" When writing a buffer (no delay).
+call neomake#configure#automake('w')
