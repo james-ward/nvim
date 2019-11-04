@@ -4,3 +4,9 @@
 [submodule "bundle/neomake"]
 	path = bundle/neomake
 	url = https://github.com/neomake/neomake.git
+[submodule "bundle/vim-ros"]
+	path = bundle/vim-ros
+	url = https://github.com/taketwo/vim-ros.git
+[submodule "bundle/YouCompleteMe"]
+	path = bundle/YouCompleteMe
+	url = https://github.com/ycm-core/YouCompleteMe.git
